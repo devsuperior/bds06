@@ -1,4 +1,4 @@
-package com.devsuperior.movieflix.dtos;
+package com.devsuperior.movieflix.dto;
 
 import java.io.Serializable;
 

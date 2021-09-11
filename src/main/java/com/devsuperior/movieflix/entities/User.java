@@ -30,6 +30,7 @@ public class User implements Serializable, UserDetails {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
 	private String name;
 	private String email;
 	private String password;
