@@ -1,8 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import 'bootstrap/dist/css/bootstrap.css';
-import App from './App';
+import App from './App'; // importação do componente raiz
 
+/**
+ * Função renderizadora: "injeta" o componente principal App.tsx
+ * na página index.html.
+ */
 ReactDOM.render(
    <React.StrictMode>
       <App />
