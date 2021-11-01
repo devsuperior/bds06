@@ -1,0 +1,40 @@
+.home {
+   max-width: 1200px;
+   margin: 0 auto;
+}
+
+.home-container {
+   height: 100%;
+}
+
+.banner {
+   display: none;
+}
+
+@media (min-width: 1200px) {
+   .home-container {
+      display: flex;
+      padding: 50px 100px;
+   }
+   .banner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+   }
+   .banner-content {
+      color: #ffffff;
+   }
+   .banner-content h1 {
+      font-size: 48px;
+      margin-top: 30px;
+      margin-bottom: 20px;
+   }
+   .banner-content p {
+      font-size: 22px;
+      width: 320px;
+      margin-bottom: 50px;
+   }
+   .banner-img {
+      width: 380px;
+   }
+}
