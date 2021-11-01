@@ -2,10 +2,12 @@ import './styles.css';
 
 import { ReactComponent as BannerImg } from 'assets/images/banner-img.svg';
 
+/**
+ * Componente "Página inicial".
+ */
 const Home = function () {
    return (
       <div className="home">
-         
          <div className="home-container">
             <div className="banner">
                <div className="banner-content">
@@ -16,6 +18,7 @@ const Home = function () {
                   <BannerImg />
                </div>
             </div>
+
             <div>
                Card de login
             </div>

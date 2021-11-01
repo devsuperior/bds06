@@ -12,3 +12,9 @@ h5,
 h6 {
    font-weight: bold;
 }
+
+a,
+a:hover {
+   color: #000;
+   text-decoration: unset;
+}
