@@ -1,6 +1,7 @@
 import './styles.css';
 
 import { ReactComponent as BannerImg } from 'assets/images/banner-img.svg';
+import Login from './Login';
 
 /**
  * Componente "Página inicial".
@@ -18,10 +19,7 @@ const Home = function () {
                   <BannerImg />
                </div>
             </div>
-
-            <div>
-               Card de login
-            </div>
+            <Login />
          </div>
       </div>
    );

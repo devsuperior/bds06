@@ -5,6 +5,9 @@
 
 .home-container {
    height: 100%;
+   padding: 20px 10px;
+   display: flex;
+   justify-content: center;
 }
 
 .banner {
@@ -14,6 +17,7 @@
 @media (min-width: 1200px) {
    .home-container {
       display: flex;
+      justify-content: space-between;
       padding: 50px 100px;
    }
    .banner {
