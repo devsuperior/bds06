@@ -2,6 +2,7 @@
    height: 70px;
    padding: 0px 20px;
    display: flex;
+   justify-content: space-between;
    align-items: center;
 }
 
@@ -9,6 +10,23 @@
    margin: 0px;
    font-size: 24px;
 }
+
+.navbar-login-logout {
+   width: 100px;
+   height: 30px;
+   border: 1px solid #000000;
+   border-radius: 10px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.navbar-login-logout a {
+   font-size: 14px;
+   font-weight: bold;
+   text-transform: uppercase;
+}
+
 
 @media (min-width: 768px) {
    .navbar-container {

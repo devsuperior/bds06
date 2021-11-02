@@ -68,7 +68,7 @@ const Login = function () {
                <input
                   type="text"
                   className="form-control base-input"
-                  placeholder="Email"
+                  placeholder="E-mail"
                   {...register('username')}
                   name="username"
                />
