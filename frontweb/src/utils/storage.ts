@@ -33,3 +33,10 @@ export const getAuthData = () => {
    const authData = JSON.parse(text);
    return authData as LoginResponse;
 }
+
+/**
+ * Função que remove uma resposta de login armazenada no `localStorage`
+ */
+export const removeAuthData = () => {
+   localStorage.removeItem(tokenKey);
+}

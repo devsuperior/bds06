@@ -10,7 +10,7 @@ type Role = 'ROLE_VISITOR' | 'ROLE_MEMBER';
  * Tipo de objeto para armazenar algumas propriedades de um
  * token decodificado
  */
-type TokenData = {
+export type TokenData = {
    exp: number;
    user_name: string;
    authorities: Role[];

@@ -1,10 +1,10 @@
 import './styles.css';
 
+import { useHistory } from 'react-router';
 import { useForm } from 'react-hook-form';
-import Button from 'components/Button';
 import { requestLogin } from 'utils/requests';
 import { saveAuthData } from 'utils/storage';
-import { useHistory } from 'react-router';
+import Button from 'components/Button';
 
 /**
  * Tipo de dados para formulário de login
