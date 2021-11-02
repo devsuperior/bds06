@@ -1,0 +1,35 @@
+.catalog-container {
+   height: 100%;
+   padding: 15px;
+}
+
+.catalog-container h1 {
+   color: #fff;
+   font-size: 24px;
+   margin-bottom: 50px;
+}
+
+.catalog-movies {
+   display: flex;
+   flex-direction: column;
+}
+
+.catalog-movies a {
+   color: #fff;
+   font-size: 18px;
+}
+
+@media(min-width: 1200px) {
+   .catalog-container {
+      padding: 40px;
+   }
+
+   .catalog-container h1 {
+      font-size: 48px;
+      margin-bottom: 40px;
+   }
+
+   .catalog-movies a {
+      font-size: 24px;
+   }
+}
