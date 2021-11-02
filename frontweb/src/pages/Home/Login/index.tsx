@@ -3,6 +3,7 @@ import './styles.css';
 import { useForm } from 'react-hook-form';
 import Button from 'components/Button';
 import { requestLogin } from 'utils/requests';
+import { getAuthData, saveAuthData } from 'utils/storage';
 
 /**
  * Tipo de dados para formulário de login
@@ -24,7 +25,9 @@ const Login = function () {
    const onSubmit = (formData: FormData) => {
       requestLogin(formData)
          .then((response) => {
-            console.log('SUCESSO! ', response);
+            saveAuthData(response.data);
+            const token = getAuthData().access_token;
+            console.log('SUCESSO! ', token);
          })
          .catch((error) => {
             console.log('ERRO! ', error);
