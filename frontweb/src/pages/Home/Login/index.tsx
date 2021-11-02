@@ -3,7 +3,8 @@ import './styles.css';
 import { useForm } from 'react-hook-form';
 import Button from 'components/Button';
 import { requestLogin } from 'utils/requests';
-import { getAuthData, saveAuthData } from 'utils/storage';
+import { saveAuthData } from 'utils/storage';
+import { useHistory } from 'react-router';
 
 /**
  * Tipo de dados para formulário de login
@@ -17,8 +18,16 @@ type FormData = {
  * Componente "Login"
  */
 const Login = function () {
-   /* Biblioteca React Hook Form */
+
+   /**
+    * Hook da dependência `react-hook-form` para trabalhar com formulários
+    * */
    const { register, handleSubmit } = useForm();
+
+   /**
+    * Hook da dependência `react-router` para trabalhar com redirecionamento de rotas
+    */
+   const history = useHistory();
 
    /* onSubmit: ação executada ao clicar com o mouse ou ao teclar enter
     * --> requisição de login */
@@ -26,8 +35,7 @@ const Login = function () {
       requestLogin(formData)
          .then((response) => {
             saveAuthData(response.data);
-            const token = getAuthData().access_token;
-            console.log('SUCESSO! ', token);
+            history.push('/movies'); // Login com sucesso: uma nova rota é empilhada
          })
          .catch((error) => {
             console.log('ERRO! ', error);
