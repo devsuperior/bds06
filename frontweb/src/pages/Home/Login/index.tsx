@@ -5,6 +5,9 @@ import { useForm } from 'react-hook-form';
 import { requestLogin } from 'utils/requests';
 import { saveAuthData } from 'utils/storage';
 import Button from 'components/Button';
+import { useContext } from 'react';
+import { AuthContext } from 'AuthContext';
+import { getTokenData } from 'utils/auth';
 
 /**
  * Tipo de dados para formulário de login
@@ -19,6 +22,11 @@ type FormData = {
  */
 const Login = function () {
    /**
+    * Hook da dependência `react` para usar o contexto global já criado
+    */
+   const { setAuthContextData } = useContext(AuthContext);
+
+   /**
     * Hook da dependência `react-hook-form` para trabalhar com formulários
     * */
    const { register, handleSubmit } = useForm();
@@ -28,13 +36,24 @@ const Login = function () {
     */
    const history = useHistory();
 
-   /* onSubmit: ação executada ao clicar com o mouse ou ao teclar enter
-    * --> requisição de login */
+   /**
+    * onSubmit: função executada ao clicar com o mouse ou ao teclar enter
+    * --> requisição de login ao backend 
+    * */
    const onSubmit = (formData: FormData) => {
       requestLogin(formData)
          .then((response) => {
+            /* Salvando os dados de autenticação no localStorage */
             saveAuthData(response.data);
-            history.push('/movies'); // Login com sucesso: uma nova rota é empilhada
+            
+            /* Salvando os dados de autenticação no contexto global da aplicação */
+            setAuthContextData({
+               authenticated: true,
+               tokenData: getTokenData(),
+            });
+
+            /* Login com sucesso: uma nova rota é empilhada */
+            history.push('/movies');
          })
          .catch((error) => {
             console.log('ERRO! ', error);
