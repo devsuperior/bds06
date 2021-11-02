@@ -18,7 +18,6 @@ type FormData = {
  * Componente "Login"
  */
 const Login = function () {
-
    /**
     * Hook da dependência `react-hook-form` para trabalhar com formulários
     * */
