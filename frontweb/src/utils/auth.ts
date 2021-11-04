@@ -4,7 +4,7 @@ import { getAuthData } from 'utils/storage';
 /**
  * Possíveis papéis dos usuários do sistema
  */
-type Role = 'ROLE_VISITOR' | 'ROLE_MEMBER';
+export type Role = 'ROLE_VISITOR' | 'ROLE_MEMBER';
 
 /**
  * Tipo de objeto para armazenar algumas propriedades de um

@@ -1,27 +1,18 @@
-import './styles.css';
+import { Switch, Route } from 'react-router';
+import PrivateRoute from 'components/PrivateRoute';
+import Auth from './Auth';
+import Catalog from 'pages/Home/Catalog';
 
-import { ReactComponent as BannerImg } from 'assets/images/banner-img.svg';
-import Login from './Login';
-
-/**
- * Componente "Página inicial".
- */
-const Home = function () {
+const Home = () => {
    return (
-      <div className="home">
-         <div className="home-container">
-            <div className="banner">
-               <div className="banner-content">
-                  <h1>Avalie Filmes</h1>
-                  <p>Diga o que você achou do seu filme favorito</p>
-               </div>
-               <div className="banner-img">
-                  <BannerImg />
-               </div>
-            </div>
-            <Login />
-         </div>
-      </div>
+      <Switch>
+         <Route path="/auth" exact>
+            <Auth />
+         </Route>
+         <PrivateRoute path="/movies">
+            <Catalog />
+         </PrivateRoute>
+      </Switch>
    );
 };
 

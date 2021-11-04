@@ -1,9 +1,6 @@
 import './styles.css';
 
 const Catalog = function () {
-
-   const [page, setPage]
-
    return (
       <div className="catalog-container">
          <h1>Tela listagem de filmes</h1>

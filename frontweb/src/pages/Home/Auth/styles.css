@@ -1,9 +1,9 @@
-.home {
+.auth {
    max-width: 1200px;
    margin: 0 auto;
 }
 
-.home-container {
+.auth-container {
    height: 100%;
    padding: 20px 10px;
    display: flex;
@@ -14,8 +14,13 @@
    display: none;
 }
 
+.form-container {
+   width: 100%;
+   max-width: 480px;
+}
+
 @media (min-width: 1200px) {
-   .home-container {
+   .auth-container {
       display: flex;
       justify-content: space-between;
       padding: 50px 100px;
