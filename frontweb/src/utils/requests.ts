@@ -1,3 +1,4 @@
+import { getAuthData } from './storage';
 import qs from 'qs';
 import axios, { AxiosRequestConfig } from 'axios';
 
@@ -59,5 +60,28 @@ export const requestLogin = (loginData: LoginData) => {
       headers: headers,
       data: body,
    };
+   return axios(config);
+};
+
+/**
+ * Função para fazer requisições autorizadas ao backend
+ */
+export const requestBackend = (config: AxiosRequestConfig) => {
+   /* Modificando (ou não) os cabeçalhos da requisição */
+   const headers = config.withCredentials
+      ? {
+           // requisição com autorização
+           ...config.headers, // cabeçalhos-padrão
+           Authorization: 'Bearer ' + getAuthData().access_token, // acréscimo do cabeçalho de autorização
+        }
+      : {
+           // requisição sem autorização
+           ...config.headers, // os cabeçalhos são os que já vieram por padrão
+        };
+
+   /* Modificando os parâmetros da requisição para incluir o 'baseURL' e 
+   os cabeçalhos (modificados ou não) */
+   config = { baseURL: BASE_URL, ...config, headers: headers}; // incluindo a propriedade baseURL
+
    return axios(config);
 };

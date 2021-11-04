@@ -38,14 +38,14 @@ const Login = function () {
 
    /**
     * onSubmit: função executada ao clicar com o mouse ou ao teclar enter
-    * --> requisição de login ao backend 
+    * --> requisição de login ao backend
     * */
    const onSubmit = (formData: FormData) => {
       requestLogin(formData)
          .then((response) => {
             /* Salvando os dados de autenticação no localStorage */
             saveAuthData(response.data);
-            
+
             /* Salvando os dados de autenticação no contexto global da aplicação */
             setAuthContextData({
                authenticated: true,

@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import './styles.css';
 
 const Catalog = function () {
@@ -5,8 +6,8 @@ const Catalog = function () {
       <div className="catalog-container">
          <h1>Tela listagem de filmes</h1>
          <div className="catalog-movies">
-            <a href="#movies1">Acessar /movies/1</a>
-            <a href="#movies2">Acessar /movies/2</a>
+            <Link to="/movies/1">Acessar /movies/1</Link>
+            <Link to="/movies/2">Acessar /movies/2</Link>
          </div>
       </div>
    );

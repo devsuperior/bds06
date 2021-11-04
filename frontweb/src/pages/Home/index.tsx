@@ -5,14 +5,16 @@ import Catalog from 'pages/Home/Catalog';
 
 const Home = () => {
    return (
-      <Switch>
+      {
+         /*<Switch>
          <Route path="/auth" exact>
             <Auth />
          </Route>
          <PrivateRoute path="/movies">
             <Catalog />
          </PrivateRoute>
-      </Switch>
+      </Switch>*/
+      } && <h1>teste</h1>
    );
 };
 
