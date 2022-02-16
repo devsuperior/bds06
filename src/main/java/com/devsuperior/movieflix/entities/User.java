@@ -7,9 +7,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -36,7 +40,9 @@ public class User implements UserDetails, Serializable {
 	private String email;
 	private String password;
 
-	@OneToMany( mappedBy = "user" )
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "tb_user_role", joinColumns = { @JoinColumn(name = "role_id") }, inverseJoinColumns = {
+			@JoinColumn(name = "user_id") })
 	private List<Role> roles = new ArrayList<Role>();
 
 	@OneToMany(mappedBy = "user")

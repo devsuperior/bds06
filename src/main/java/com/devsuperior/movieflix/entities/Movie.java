@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -38,6 +39,6 @@ public class Movie implements Serializable {
 	@JoinColumn(name = "genre_id")
 	private Genre genre;
 
-	@OneToMany(mappedBy = "movie")
+	@OneToMany(mappedBy = "movie", fetch = FetchType.EAGER)
 	private List<Review> reviews = new ArrayList<Review>();
 }
