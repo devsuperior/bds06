@@ -2,8 +2,11 @@ package com.devsuperior.movieflix.resources;
 
 import java.net.URI;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +15,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.devsuperior.movieflix.dto.ReviewDTO;
 import com.devsuperior.movieflix.dto.UserDTO;
+import com.devsuperior.movieflix.entities.User;
 import com.devsuperior.movieflix.services.AuthService;
 import com.devsuperior.movieflix.services.ReviewService;
 
@@ -26,11 +30,10 @@ public class ReviewResource {
 	private ReviewService reviewService;
 
 	@PostMapping
-	public ResponseEntity<ReviewDTO> save(@RequestBody ReviewDTO dto) {
-		com.devsuperior.movieflix.entities.User user = authService.authenticated();
+	public ResponseEntity<ReviewDTO> save(@Valid @RequestBody ReviewDTO dto) {
+		User user = authService.authenticated();
 
 		UserDTO userDTO = new UserDTO(user.getId(), user.getName(), user.getEmail());
-
 		dto.setUser(userDTO);
 		dto = reviewService.save(dto);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(dto.getMovieId())
