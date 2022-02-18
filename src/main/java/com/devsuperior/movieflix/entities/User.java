@@ -3,7 +3,9 @@ package com.devsuperior.movieflix.entities;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import javax.persistence.Entity;
@@ -43,9 +45,9 @@ public class User implements UserDetails, Serializable {
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "tb_user_role", joinColumns = { @JoinColumn(name = "role_id") }, inverseJoinColumns = {
 			@JoinColumn(name = "user_id") })
-	private List<Role> roles = new ArrayList<Role>();
+	private Set<Role> roles = new HashSet<Role>();
 
-	@OneToMany(mappedBy = "user")
+	@OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
 	private List<Review> reviews = new ArrayList<Review>();
 
 	@Override

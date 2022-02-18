@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -39,6 +40,6 @@ public class Movie implements Serializable {
 	@JoinColumn(name = "genre_id")
 	private Genre genre;
 
-	@OneToMany(mappedBy = "movie", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "movie", fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
 	private List<Review> reviews = new ArrayList<Review>();
 }
