@@ -23,7 +23,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 	private JwtTokenStore tokenStore;
 
 	private static final String[] PUBLIC = { "/oauth/token", "/h2-console/**" };
-	private static final String[] ROLE_MEMBER_POST = { "/reviews/**" };
+	private static final String[] ROLE_MEMBER_POST = { "/reviews/**", "/genres/**" };
 
 	@Override
 	public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
