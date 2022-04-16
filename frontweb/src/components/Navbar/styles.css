@@ -1,0 +1,57 @@
+.nav-logo-text,
+.nav-logo-text:hover {
+  color: black;
+}
+
+.main-nav {
+  padding-left: 40px;
+  min-height: 70px;
+}
+
+.main-menu {
+  display: flex;
+  width: 380px;
+  font-size: 18px;
+  justify-content: space-between;
+}
+
+.main-menu,
+a {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.main-menu a:hover {
+  color: #fff;
+}
+
+.main-menu a.active {
+  font-weight: 700;
+  color: #fff;
+}
+
+.nav-login-logout{
+    display: none;
+}
+
+.nav-username {
+  display: none;
+}
+
+@media (min-width: 778px) {
+  .nav-login-logout {
+    display: unset;
+    color: #fff;
+    margin-right: 15px;
+  }
+}
+
+@media (min-width: 992px) {
+  .nav-login-logout {
+    margin-right: 40px;
+  }
+
+  .nav-username {
+      display: unset;
+      margin-right: 20px;
+  }
+}

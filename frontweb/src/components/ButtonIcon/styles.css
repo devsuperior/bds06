@@ -1,0 +1,21 @@
+.buttom-container {
+  display: flex;
+}
+
+.btn {
+  width: var(--btn-width);
+  height: 60px;
+}
+
+.btn h6 {
+  color: black;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+
+@media (min-width: 576px) {
+  .btn h6 {
+    font-size: 18px;
+  }
+}

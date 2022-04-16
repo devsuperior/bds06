@@ -1,0 +1,31 @@
+.movies-container {
+  padding: 10px;
+  font-size: 24px;
+  color: #FFFFFF;
+}
+
+.movies-card {
+  padding: 10px;
+}
+
+@media (min-width: 576px) {
+  .movies-container {
+    padding: 20px;
+    font-size: 32px;
+  }
+
+  .movies-card {
+    padding: 20px;
+  }
+}
+
+@media (min-width: 992px) {
+  .movies-container {
+    padding: 40px;
+    font-size: 32px;
+  }
+
+  .movies-card {
+    padding: 40px;
+  }
+}
