@@ -40,6 +40,6 @@ public class Movie implements Serializable {
 	@JoinColumn(name = "genre_id")
 	private Genre genre;
 
-	@OneToMany(mappedBy = "movie", fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+	@OneToMany(mappedBy = "movie", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<Review> reviews = new ArrayList<Review>();
 }
