@@ -43,7 +43,7 @@ public class MovieResource {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
-
+	
 	@GetMapping
 	public ResponseEntity<Page<MovieDTO>> findByGenre(@RequestParam(required = false) Integer genreId,
 			Pageable pageable) {
