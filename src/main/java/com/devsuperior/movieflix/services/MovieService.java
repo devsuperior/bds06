@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.devsuperior.movieflix.dto.MovieDTO;
 import com.devsuperior.movieflix.entities.Movie;
 import com.devsuperior.movieflix.entities.projection.MovieProjection;
+import com.devsuperior.movieflix.entities.projection.ReviewProjection;
 import com.devsuperior.movieflix.repositories.MovieRepository;
 
 @Service
@@ -27,9 +28,14 @@ public class MovieService {
 
 	@Transactional(readOnly = true)
 	public Page<MovieDTO> findByGenre(Integer genreId, Pageable pageable) {
-		
 		Page<Movie> list = movieRepository.findByGenre(genreId, pageable);
 		return list.map(x -> new MovieDTO(x));
+	}
+
+	@Transactional(readOnly = true)
+	public Optional<ReviewProjection> findByReview(Long id) {
+		Optional<ReviewProjection> obj = movieRepository.findByReview(id);
+		return obj;
 	}
 
 }

@@ -14,9 +14,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.devsuperior.movieflix.dto.MovieDTO;
+import com.devsuperior.movieflix.dto.ReviewDTO;
+import com.devsuperior.movieflix.dto.UserDTO;
 import com.devsuperior.movieflix.entities.Genre;
 import com.devsuperior.movieflix.entities.Movie;
 import com.devsuperior.movieflix.entities.projection.MovieProjection;
+import com.devsuperior.movieflix.entities.projection.ReviewProjection;
 import com.devsuperior.movieflix.services.MovieService;
 
 @RestController
@@ -28,7 +31,6 @@ public class MovieResource {
 
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<Movie> findById(@PathVariable Long id) {
-
 		Optional<MovieProjection> movieOptional = movieService.findById(id);
 		if (movieOptional.isPresent()) {
 			Movie movie = new Movie(Long.valueOf(movieOptional.get().getId()), movieOptional.get().getTitle(),
@@ -43,9 +45,23 @@ public class MovieResource {
 	}
 
 	@GetMapping
-	public ResponseEntity<Page<MovieDTO>> findByGenre(@RequestParam(required = false) Integer genreId, Pageable pageable) {
+	public ResponseEntity<Page<MovieDTO>> findByGenre(@RequestParam(required = false) Integer genreId,
+			Pageable pageable) {
 		Page<MovieDTO> lista = movieService.findByGenre(genreId, pageable);
 		return ResponseEntity.ok().body(lista);
+	}
+
+	@GetMapping(value = "/{id}/reviews")
+	public ResponseEntity<ReviewDTO> findByReview(@PathVariable Long id) {
+		Optional<ReviewProjection> reviewOptional = movieService.findByReview(id);
+		if (reviewOptional.isPresent()) {
+			ReviewDTO reviewDTO = new ReviewDTO(reviewOptional.get().getId(), reviewOptional.get().getMovieId(),
+					reviewOptional.get().getText(), new UserDTO(reviewOptional.get().getUserId(),
+							reviewOptional.get().getName(), reviewOptional.get().getEmail()));
+			return ResponseEntity.ok().body(reviewDTO);
+		} else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
 	}
 
 }
