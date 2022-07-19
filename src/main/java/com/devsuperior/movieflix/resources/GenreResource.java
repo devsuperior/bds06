@@ -23,4 +23,10 @@ public class GenreResource {
 		List<GenreDTO> list = genreService.AllGenres();
 		return ResponseEntity.ok(list);
 	}
+	
+	@GetMapping(value = "hello")
+	public ResponseEntity<String> HelloWord() {		
+		return ResponseEntity.ok("Hello Word");
+	}
+
 }
