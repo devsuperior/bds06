@@ -26,7 +26,7 @@ public class GenreResource {
 	
 	@GetMapping(value = "hello")
 	public ResponseEntity<String> HelloWord() {		
-		return ResponseEntity.ok("Hello Word");
+		return ResponseEntity.ok("Hello Word de novo");
 	}
 
 }
