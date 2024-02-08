@@ -1,6 +1,7 @@
 package com.devsuperior.movieflix.entities;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.ArrayList;
@@ -8,6 +9,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -49,8 +51,8 @@ public class User implements UserDetails {
 
   @Override
   public Collection<? extends GrantedAuthority> getAuthorities() {
-    //TODO: nao esquecer de implementar
-    return null;
+    return roles.stream().map(role -> new SimpleGrantedAuthority(role.getAuthority()))
+        .collect(Collectors.toList());
   }
 
   @Override
