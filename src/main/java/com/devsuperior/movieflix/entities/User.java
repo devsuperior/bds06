@@ -49,6 +49,15 @@ public class User implements UserDetails {
   @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
   private List<Review> reviews = new ArrayList<>();
 
+  public boolean hasHole(String roleName) {
+    for(Role role : roles) {
+      if (role.getAuthority().equals(roleName)) {
+        return false;
+      }
+    }
+    return true;
+  }
+
   @Override
   public Collection<? extends GrantedAuthority> getAuthorities() {
     return roles.stream().map(role -> new SimpleGrantedAuthority(role.getAuthority()))

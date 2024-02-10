@@ -1,7 +1,9 @@
 package com.devsuperior.movieflix.entities;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -25,5 +27,5 @@ public class Genre {
   private String name;
 
   @OneToMany(mappedBy = "genre")
-  private List<Movie> movies = new ArrayList<>();
+  private Set<Movie> movies = new HashSet<>();
 }
