@@ -22,7 +22,7 @@ public class GenreController {
 
   @GetMapping
   public ResponseEntity<List<GenreDTO>> findAll() {
-    List<GenreDTO> genreDTOList = genreService.findAll();
-    return ResponseEntity.ok().body(genreDTOList);
+    return ResponseEntity.ok()
+        .body(genreService.findAll());
   }
 }
