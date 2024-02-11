@@ -1,5 +1,6 @@
 package com.devsuperior.movieflix.dto;
 
+import javax.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,7 +13,11 @@ import lombok.NoArgsConstructor;
 public class ReviewDTO {
 
   private Long id;
+
+  @NotBlank(message = "not blank")
   private String text;
+
   private UserDTO user;
-  private Long movieId;
+
+  private Long movie;
 }

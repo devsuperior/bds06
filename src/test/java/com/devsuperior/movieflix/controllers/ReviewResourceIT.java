@@ -51,7 +51,7 @@ public class ReviewResourceIT {
 
 		ReviewDTO reviewDTO = new ReviewDTO();
 		reviewDTO.setText("Gostei do filme!");
-		reviewDTO.setMovieId(1L);
+		reviewDTO.setMovie(1L);
 
 		String jsonBody = objectMapper.writeValueAsString(reviewDTO);
 		
@@ -71,7 +71,7 @@ public class ReviewResourceIT {
 		
 		ReviewDTO reviewDTO = new ReviewDTO();
 		reviewDTO.setText("Gostei do filme!");
-		reviewDTO.setMovieId(1L);
+		reviewDTO.setMovie(1L);
 
 		String jsonBody = objectMapper.writeValueAsString(reviewDTO);
 		
@@ -95,7 +95,7 @@ public class ReviewResourceIT {
 		
 		ReviewDTO reviewDTO = new ReviewDTO();
 		reviewDTO.setText(reviewText);
-		reviewDTO.setMovieId(movieId);
+		reviewDTO.setMovie(movieId);
 
 		String jsonBody = objectMapper.writeValueAsString(reviewDTO);
 		
@@ -125,7 +125,7 @@ public class ReviewResourceIT {
 		
 		ReviewDTO reviewDTO = new ReviewDTO();
 		reviewDTO.setText("        ");
-		reviewDTO.setMovieId(1L);
+		reviewDTO.setMovie(1L);
 
 		String jsonBody = objectMapper.writeValueAsString(reviewDTO);
 
