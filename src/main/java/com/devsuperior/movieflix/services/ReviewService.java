@@ -25,7 +25,7 @@ public class ReviewService {
   @Transactional
   @PreAuthorize("hasAnyRole('MEMBER')")
   public ReviewDTO save(final ReviewDTO reviewDTO) {
-    final var movie = movieService.findById(reviewDTO.getMovie());
+    final var movie = movieService.findById(reviewDTO.getMovieId());
     final var user = authService.authenticated();
 
     final var review = Review.builder()

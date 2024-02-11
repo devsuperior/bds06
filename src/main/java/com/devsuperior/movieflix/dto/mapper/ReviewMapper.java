@@ -11,7 +11,7 @@ public class ReviewMapper {
         .id(review.getId())
         .text(review.getText())
         .user(UserMapper.toDTO(review.getUser()))
-        .movie(review.getMovie().getId())
+        .movieId(review.getMovie().getId())
         .build();
   }
 
@@ -21,7 +21,9 @@ public class ReviewMapper {
         .id(reviewDTO.getId())
         .text(reviewDTO.getText())
         .user(UserMapper.toEntity(reviewDTO.getUser()))
-        .movie(Movie.builder().build())
+        .movie(Movie.builder()
+            .id(reviewDTO.getMovieId())
+            .build())
         .build();
   }
 }

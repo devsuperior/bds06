@@ -19,5 +19,5 @@ public class ReviewDTO {
 
   private UserDTO user;
 
-  private Long movie;
+  private Long movieId;
 }

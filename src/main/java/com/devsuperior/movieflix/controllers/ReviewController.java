@@ -27,6 +27,7 @@ public class ReviewController {
         .buildAndExpand(reviewDTO.getId())
         .toUri();
 
-    return ResponseEntity.created(uri).body(reviewService.save(reviewDTO));
+    return ResponseEntity.created(uri)
+        .body(reviewService.save(reviewDTO));
   }
 }
