@@ -36,6 +36,7 @@ public class ReviewResourceIT {
 	private String visitorPassword;
 	private String memberUsername;
 	private String memberPassword;
+	private String memberToken, visitorToken, invalidToken;
 	
 	@BeforeEach
 	void setUp() throws Exception {
@@ -44,6 +45,10 @@ public class ReviewResourceIT {
 		visitorPassword = "123456";
 		memberUsername = "ana@gmail.com";
 		memberPassword = "123456";
+		
+		visitorToken = tokenUtil.obtainAccessToken(mockMvc, visitorUsername, visitorPassword);
+		memberToken = tokenUtil.obtainAccessToken(mockMvc, memberUsername, memberPassword);;
+		invalidToken = memberToken + "xpto";
 	}
 
 	@Test
@@ -58,6 +63,7 @@ public class ReviewResourceIT {
 		ResultActions result =
 				mockMvc.perform(post("/reviews")
 						.content(jsonBody)
+						.header("Authorization", "Bearer " + invalidToken)
 						.contentType(MediaType.APPLICATION_JSON)
 						.accept(MediaType.APPLICATION_JSON));
 
@@ -66,8 +72,6 @@ public class ReviewResourceIT {
 	
 	@Test
 	public void insertShouldReturnForbiddenWhenVisitorAuthenticated() throws Exception {
-	
-		String accessToken = tokenUtil.obtainAccessToken(mockMvc, visitorUsername, visitorPassword);
 		
 		ReviewDTO reviewDTO = new ReviewDTO();
 		reviewDTO.setText("Gostei do filme!");
@@ -77,7 +81,7 @@ public class ReviewResourceIT {
 		
 		ResultActions result =
 				mockMvc.perform(post("/reviews")
-						.header("Authorization", "Bearer " + accessToken)
+						.header("Authorization", "Bearer " + visitorToken)
 						.content(jsonBody)
 						.contentType(MediaType.APPLICATION_JSON)
 						.accept(MediaType.APPLICATION_JSON));
@@ -87,8 +91,6 @@ public class ReviewResourceIT {
 	
 	@Test
 	public void insertShouldInsertReviewWhenMemberAuthenticatedAndValidData() throws Exception {
-		
-		String accessToken = tokenUtil.obtainAccessToken(mockMvc, memberUsername, memberPassword);
 		
 		String reviewText = "Gostei do filme!";
 		long movieId = 1L;
@@ -101,7 +103,7 @@ public class ReviewResourceIT {
 		
 		ResultActions result =
 				mockMvc.perform(post("/reviews")
-						.header("Authorization", "Bearer " + accessToken)
+						.header("Authorization", "Bearer " + memberToken)
 						.content(jsonBody)
 						.contentType(MediaType.APPLICATION_JSON)
 						.accept(MediaType.APPLICATION_JSON));
@@ -121,8 +123,6 @@ public class ReviewResourceIT {
 	@Test
 	public void insertShouldReturnUnproccessableEntityWhenMemberAuthenticatedAndInvalidData() throws Exception {
 		
-		String accessToken = tokenUtil.obtainAccessToken(mockMvc, memberUsername, memberPassword);
-		
 		ReviewDTO reviewDTO = new ReviewDTO();
 		reviewDTO.setText("        ");
 		reviewDTO.setMovieId(1L);
@@ -131,7 +131,7 @@ public class ReviewResourceIT {
 
 		ResultActions result =
 				mockMvc.perform(post("/reviews")
-						.header("Authorization", "Bearer " + accessToken)
+						.header("Authorization", "Bearer " + memberToken)
 						.content(jsonBody)
 						.contentType(MediaType.APPLICATION_JSON)
 						.accept(MediaType.APPLICATION_JSON));
