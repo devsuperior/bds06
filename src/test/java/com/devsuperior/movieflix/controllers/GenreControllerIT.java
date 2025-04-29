@@ -31,7 +31,6 @@ public class GenreControllerIT {
 	private String visitorPassword;
 	private String memberUsername;
 	private String memberPassword;
-	private String memberToken, visitorToken, invalidToken;
 	
 	@BeforeEach
 	void setUp() throws Exception {
@@ -40,10 +39,6 @@ public class GenreControllerIT {
 		visitorPassword = "123456";
 		memberUsername = "ana@gmail.com";
 		memberPassword = "123456";
-		
-		visitorToken = tokenUtil.obtainAccessToken(mockMvc, visitorUsername, visitorPassword);
-		memberToken = tokenUtil.obtainAccessToken(mockMvc, memberUsername, memberPassword);;
-		invalidToken = memberToken + "xpto";
 	}
 
 	@Test
@@ -51,7 +46,6 @@ public class GenreControllerIT {
 
 		ResultActions result =
 				mockMvc.perform(get("/genres")
-					.header("Authorization", "Bearer " + invalidToken)
 					.contentType(MediaType.APPLICATION_JSON));
 
 		result.andExpect(status().isUnauthorized());
@@ -59,10 +53,12 @@ public class GenreControllerIT {
 	
 	@Test
 	public void findAllShouldReturnAllGenresWhenVisitorAuthenticated() throws Exception {
+
+		String accessToken = tokenUtil.obtainAccessToken(mockMvc, visitorUsername, visitorPassword);
 		
 		ResultActions result =
 				mockMvc.perform(get("/genres")
-					.header("Authorization", "Bearer " + visitorToken)
+					.header("Authorization", "Bearer " + accessToken)
 					.contentType(MediaType.APPLICATION_JSON));
 
 		result.andExpect(status().isOk());
@@ -77,9 +73,11 @@ public class GenreControllerIT {
 	@Test
 	public void findAllShouldReturnAllGenresWhenMemberAuthenticated() throws Exception {
 
+		String accessToken = tokenUtil.obtainAccessToken(mockMvc, memberUsername, memberPassword);
+
 		ResultActions result =
 				mockMvc.perform(get("/genres")
-					.header("Authorization", "Bearer " + memberToken)
+					.header("Authorization", "Bearer " + accessToken)
 					.contentType(MediaType.APPLICATION_JSON));
 
 		result.andExpect(status().isOk());
